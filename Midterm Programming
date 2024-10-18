@@ -1,0 +1,44 @@
+1. 
+def read_grades(file_name):
+    grades = []
+    with open(file_name, 'r') as file:
+        for line in file:
+            name, grade = line.split()  
+            grades.append(int(grade))
+    return grades
+
+def calculate_average(grades):
+    total = sum(grades)
+    count = len(grades)
+    average = total / count
+    return average
+
+def count_above_average(grades, average):
+    count = 0
+    for grade in grades:
+        if grade > average:
+            count += 1
+    return count
+
+def write_results(average, above_average_count, output_file):
+    with open(output_file, 'w') as file:
+        file.write(f"Average grade: {average:.2f}\n")
+        file.write(f"Number of students above average: {above_average_count}\n")
+
+grades = read_grades('grades.txt')
+average_grade = calculate_average(grades)
+above_average_count = count_above_average(grades, average_grade)
+write_results(average_grade, above_average_count, 'results.txt')
+
+--------------------------------------------------------------------------------------------------------
+
+2. 
+def transform_data(numbers):
+    squared_numbers = []
+    for num in numbers:
+        squared = num * num
+        squared_numbers.append(squared)
+    total_sum = 0
+    for squared in squared_numbers:
+        total_sum += squared
+    return squared_numbers, total_sum
